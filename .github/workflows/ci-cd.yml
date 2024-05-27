@@ -73,7 +73,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: sonarqube
+    needs: sonarcloud
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
