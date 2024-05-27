@@ -1,3 +1,4 @@
+import React from "react";
 import ErrorBoundary from "./routes/components/ErrorBoundary";
 import AppRoutes from "./routes/AppRoutes";
 import { ThemeProvider } from "Utils/Context/ThemeContext";

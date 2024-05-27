@@ -20,11 +20,9 @@ export const UserRegisterSchema = z
 export const RegisterAlunoSchema = z.object({
   name: z.string().min(1).max(30),
   email: z.string().email({ message: "Por favor, insira um e-mail válido." }),
-  phone: z
-    .string()
-    .regex(/^\d{10,11}$/, {
-      message: "Por favor, insira um número de telefone válido.",
-    }),
+  phone: z.string().regex(/^\d{10,11}$/, {
+    message: "Por favor, insira um número de telefone válido.",
+  }),
   codeGym: z
     .string()
     .length(6, { message: "O código não está válido." })
@@ -49,10 +47,13 @@ export const InfoManagerGymSchema = z.object({
   numero: z.string().min(1),
   bairro: z.string().min(1),
   cidade: z.string().min(1),
-  estado: z.string().min(1),
 });
 
 export const RegisterTrainningSheetSchema = z.object({
-  atividade: z.string(),
-  // codAluno: z.number().min(1),
+  titulo: z.string().min(1, "O título é obrigatório"),
+  categoria: z.string().min(1, "A categoria é obrigatória"),
+  exercicios: z
+    .array(ExerciseSchema)
+    .min(1, "Deve haver pelo menos um exercício"),
+  observacao: z.string().optional(),
 });

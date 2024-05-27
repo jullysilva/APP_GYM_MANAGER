@@ -26,7 +26,7 @@ export const Title = styled.div`
 
 export const Card = styled.div`
   padding: 5vh;
-  min-height: 20vh;
+  // min-height: 20vh;
   min-width: 50vh;
   background-color: white;
   border-radius: 3vh;
@@ -39,9 +39,13 @@ export const Divider = styled.div`
 `;
 
 export const Row = styled.div`
-  margin: 3vh 0;
+  margin: 0.5rem 0;
   display: flex;
   justify-content: space-between;
+
+  p {
+    margin-bottom: 0;
+  }
 `;
 
 export const BoxContainer = styled.div`
@@ -56,10 +60,10 @@ export const CardImage = styled.div`
 `;
 
 export const Image = styled.img`
-  vertical-align: middle;
-  width: 30vh;
-  height: 30vh;
-  border-radius: 50%;
+  // vertical-align: middle;
+  // width: 30vh;
+  // height: 30vh;
+  // border-radius: 50%;
 `;
 
 export const UpdateInfo = styled.form`
@@ -69,16 +73,12 @@ export const UpdateInfo = styled.form`
   align-items: center;
 `;
 
-export const Input = styled.input`
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+export const InputLabel = styled.label`
+  font-weight: 700;
 `;
 
 export const Button = styled.button<ButtonProps>`
-  width: 70%;
+  width: 50%;
   padding: 0.7rem 0;
   background-color: transparent;
   color: #4048bf;

@@ -1,28 +1,47 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["es5", "es6", "dom"],
     "allowJs": true,
-    "skipLibCheck": true,
-    "typeRoots": ["./node_modules/@types", "./src/@types"],
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": true,
+    "target": "es5",
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "declaration": true,
+    "declarationDir": "dist",
+    "declarationMap": true,
+    "disableSizeLimit": true,
+    "downlevelIteration": false,
+    "outDir": "dist",
+    "sourceMap": true,
     "strict": false,
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "noErrorTruncation": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
+    "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
-    "noEmit": true,
-    "outDir": "./dist/",
-    "jsx": "react-jsx",
-    "noImplicitAny": false,
-    "baseUrl": "./src",
+    "jsx": "react",
+    "baseUrl": "src",
     "paths": {
       "src/*": ["~"],
-      "react": ["./node_modules/@types/react"]
-    }
+      "tslib": ["node_modules/tslib/tslib.d.ts"],
+      "components/*": ["components/*"],
+      "tests/*": ["__tests__/*"]
+    },
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ]
   },
-  "include": ["./src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.tsx", "**/*.test.tsx"]
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/__tests__",
+    "**/*.test.tsx",
+    "**/*.spec.tsx"
+  ]
 }

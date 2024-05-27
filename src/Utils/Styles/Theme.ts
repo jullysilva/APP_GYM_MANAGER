@@ -1,4 +1,4 @@
-import { Theme } from "Theme";
+import { Theme } from "types/Theme";
 import {
   RobotoBlack,
   RobotoBlackItalic,

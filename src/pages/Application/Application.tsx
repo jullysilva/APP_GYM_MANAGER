@@ -22,7 +22,7 @@ const Application = () => {
           <div className="overlay">
             <div className="overlay-panel overlay-left">
               <h1>Bem-vindo de volta!</h1>
-              <p>
+              <p className="text">
                 Para se manter conectado conosco, faça login com suas
                 informações pessoais
               </p>
@@ -37,7 +37,9 @@ const Application = () => {
             </div>
             <div className="overlay-panel overlay-right">
               <h1>Olá, Gerente!</h1>
-              <p>Insira seus dados pessoais e comece sua jornada conosco</p>
+              <p className="text">
+                Insira seus dados pessoais e comece sua jornada conosco
+              </p>
               <button
                 className="ghost"
                 data-testid="signUp"

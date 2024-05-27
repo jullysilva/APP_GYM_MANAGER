@@ -1,3 +1,4 @@
+import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserRegister } from "Utils/Schemas";
 import { UserRegisterSchema } from "Utils/Schemas/UserSchema";
@@ -24,25 +25,29 @@ function Register() {
   return (
     <>
       <div className="form-container sign-up-container">
-        <form onSubmit={handleSubmit(onSubmitForm)}>
+        <form className="form" onSubmit={handleSubmit(onSubmitForm)}>
           <h1>Criar conta</h1>
           <input
             type="text"
+            className="input"
             placeholder="Código de ativação"
             {...register("code", { required: true })}
           />
           <input
             type="email"
+            className="input"
             placeholder="Email"
             {...register("email", { required: true })}
           />
           <input
             type="password"
+            className="input"
             placeholder="Senha"
             {...register("password", { required: true })}
           />
           <input
             type="password"
+            className="input"
             placeholder="Repetir senha"
             {...register("repeatPassword", { required: true })}
           />

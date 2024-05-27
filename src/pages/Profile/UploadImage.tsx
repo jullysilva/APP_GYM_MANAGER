@@ -29,10 +29,10 @@ const UploadImage: React.FC = () => {
   };
 
   return (
-    <BoxContainer>
-      <CardImage>
-        <Image src={imageSrc || person} />
-      </CardImage>
+    <div className="author">
+      <div>
+        <Image className="avatar border-gray" src={imageSrc || person} />
+      </div>
       <Button className="outlined" onClick={handleClick}>
         Atualizar
       </Button>
@@ -44,7 +44,7 @@ const UploadImage: React.FC = () => {
         ref={hiddenFileInput}
         accept="image/*"
       />
-    </BoxContainer>
+    </div>
   );
 };
 

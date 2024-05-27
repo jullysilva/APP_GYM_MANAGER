@@ -1,22 +1,25 @@
 module.exports = {
-  preset: 'ts-jest',
-  collectCoverageFrom: [
-    '<rootDir>/src/**/*.{ts,tsx}',
-    '!**/*.d.ts'
-  ],
-  coverageDirectory: 'coverage',
-  roots: ['<rootDir>/src'],
+  preset: "ts-jest",
+  testEnvironment: "jsdom",
+  collectCoverageFrom: ["<rootDir>/src/**/*.{ts,tsx}", "!**/*.d.ts"],
+  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+  coverageDirectory: "coverage",
+  roots: ["<rootDir>/src"],
+  testPathIgnorePatterns: ["node_modules"],
+  testEnvironment: "jsdom",
   setupFilesAfterEnv: [
-    '@testing-library/jest-dom/extend-expect',
-    'dotenv/config',
-    '<rootDir>/src/setupTests.ts'
+    "@testing-library/jest-dom/extend-expect",
+    "<rootDir>/src/setupTests.ts",
   ],
-  testEnvironment: 'jsdom',
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
-    "\\.svg$": "<rootDir>/src/__mocks__/svgrMock.ts",
-    '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': 'identity-obj-proxy',
-    'src/(.*)': '<rootDir>/src/$1',
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+      "<rootDir>/__mocks__/fileMock.js",
+    "\\.(scss|sass|css)$": "identity-obj-proxy",
+    "^Utils/(.*)$": "<rootDir>/src/Utils/$1",
+    "^components/(.*)$": "<rootDir>/src/components/$1",
+  },
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  transform: {
+    "^.+\\.tsx?$": "ts-jest",
   },
 };

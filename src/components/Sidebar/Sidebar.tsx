@@ -1,8 +1,13 @@
-import { pushRotate as Menu } from "react-burger-menu";
+import React from "react";
+import { slide as Menu } from "react-burger-menu";
 import "./styles.css";
 import { FaSignOutAlt } from "react-icons/fa";
 
-const Sidebar = ({ menuOpen }) => {
+interface SidebarProps {
+  menuOpen: boolean;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ menuOpen }) => {
   const handleLogout = () => {
     // Lógica para realizar o logout do sistema
     console.log("Logout realizado com sucesso");

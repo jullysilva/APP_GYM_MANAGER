@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaUserCircle } from "react-icons/fa";
 import {
   GiHamburgerMenuStyle,
@@ -8,19 +8,14 @@ import {
   Navlink,
   Text,
 } from "./NavBar.styled";
-import Sidebar from "components/Sidebar/Sidebar";
-import { GiHamburgerMenu } from "react-icons/gi";
 
-const NavBar: React.FC = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+interface NavBarProps {
+  handleMenuToggle: () => void;
+}
 
-  const handleMenuToggle = () => {
-    setMenuOpen(!menuOpen);
-  };
-
+const NavBar: React.FC<NavBarProps> = ({ handleMenuToggle }) => {
   return (
     <>
-      <Sidebar menuOpen={menuOpen} />
       <NavbarContainer>
         <GiHamburgerMenuStyle onClick={handleMenuToggle} />
         <Text>Gerente</Text>

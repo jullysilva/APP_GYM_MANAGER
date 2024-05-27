@@ -1,85 +1,48 @@
-/* eslint-disable testing-library/prefer-presence-queries */
+/* eslint-disable testing-library/no-node-access */
+/* eslint-disable testing-library/no-container */
 /* eslint-disable testing-library/prefer-screen-queries */
 import React from "react";
-import { render, fireEvent, waitFor } from "@testing-library/react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { render, fireEvent } from "@testing-library/react";
 import Application from "../Application";
-import { toast } from "react-toastify";
+import "@testing-library/jest-dom/extend-expect";
 
-jest.mock("react-toastify", () => ({
-  toast: {
-    success: jest.fn(),
-  },
-}));
+// Mocking Login and Register components
+jest.mock("../../Login/Login", () => () => (
+  <div data-testid="login-component">Login Component</div>
+));
+jest.mock("../../Register/Register", () => () => (
+  <div data-testid="register-component">Register Component</div>
+));
 
 describe("Application Component", () => {
-  it("should render Application component", () => {
-    const { getByText, getByTestId } = render(
-      <Router>
-        <Application />
-      </Router>
-    );
+  it("should render Login and Register components", () => {
+    const { getByTestId, getByText } = render(<Application />);
 
-    // Verifica se os elementos iniciais estão presentes
+    expect(getByTestId("login-component")).toBeInTheDocument();
+    expect(getByTestId("register-component")).toBeInTheDocument();
     expect(getByText("Bem-vindo de volta!")).toBeInTheDocument();
     expect(getByText("Olá, Gerente!")).toBeInTheDocument();
-    expect(getByTestId("signIn")).toBeInTheDocument();
-    expect(getByTestId("signUp")).toBeInTheDocument();
   });
 
-  it.skip("should render a Toatify after click register", async () => {
-    const { getByText } = render(
-      <Router>
-        <Application />
-      </Router>
-    );
+  it("should switch to register view when Sign Up button is clicked", () => {
+    const { getByTestId, container } = render(<Application />);
 
-    const submitButton = getByText("Registrar-se");
-    fireEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(toast.success).toHaveBeenCalledWith(
-        "Registro realizado com sucesso, volte para login!"
-      );
-    });
-  });
-
-  it("should switch to Sign Up panel", () => {
-    const { getByTestId, getByText, getByPlaceholderText } = render(
-      <Router>
-        <Application />
-      </Router>
-    );
-
-    // Verifica se a troca para o painel de registro está funcionando
     const signUpButton = getByTestId("signUp");
     fireEvent.click(signUpButton);
 
-    expect(getByText("Inscrever-se")).toBeInTheDocument();
-    expect(getByPlaceholderText(/Código de ativação/i)).toBeInTheDocument();
-    expect(getByPlaceholderText("Repetir senha")).toBeInTheDocument();
+    expect(container.querySelector(".container")).toHaveClass(
+      "right-panel-active"
+    );
   });
 
-  it("should switch to Sign In panel", () => {
-    const {
-      getByTestId,
-      getByText,
-      queryByLabelText,
-      getByPlaceholderText,
-      getAllByText,
-    } = render(
-      <Router>
-        <Application />
-      </Router>
-    );
+  it("should switch to login view when Sign In button is clicked", () => {
+    const { getByTestId, container } = render(<Application />);
 
     const signInButton = getByTestId("signIn");
     fireEvent.click(signInButton);
 
-    expect(getByTestId("signIn")).toHaveTextContent(/Entrar/i);
-
-    expect(getByTestId("sign-in-container")).toHaveTextContent(
-      /Esqueceu a senha/i
+    expect(container.querySelector(".container")).not.toHaveClass(
+      "right-panel-active"
     );
   });
 });

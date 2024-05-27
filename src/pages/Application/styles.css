@@ -14,7 +14,7 @@ h2 {
   text-align: center;
 }
 
-p {
+.text {
   font-size: 14px;
   font-weight: 100;
   line-height: 20px;
@@ -59,7 +59,7 @@ button.ghost {
   border-color: #ffffff;
 }
 
-form {
+.form {
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -70,7 +70,7 @@ form {
   text-align: center;
 }
 
-input {
+.input {
   background-color: #eee;
   border: none;
   padding: 12px 15px;

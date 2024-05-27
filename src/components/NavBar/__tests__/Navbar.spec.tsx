@@ -8,7 +8,11 @@ describe("NavBar", () => {
   it("renders welcome message and account icon", () => {
     const { getByText, getByTestId } = render(
       <Router>
-        <NavBar />
+        <NavBar
+          handleMenuToggle={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
       </Router>
     );
 

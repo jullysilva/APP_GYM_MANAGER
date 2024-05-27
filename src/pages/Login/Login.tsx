@@ -1,3 +1,4 @@
+import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userHook } from "Utils/Context/useAuth";
 import { UserLogin } from "Utils/Schemas";
@@ -31,15 +32,17 @@ const Login = () => {
       className="form-container sign-in-container"
       data-testid="sign-in-container"
     >
-      <form onSubmit={handleSubmit(onSubmitForm)}>
+      <form className="form" onSubmit={handleSubmit(onSubmitForm)}>
         <h1>Entrar</h1>
         <input
           type="email"
+          className="input"
           placeholder="Email"
           {...register("email", { required: true })}
         />
         <input
           type="password"
+          className="input"
           placeholder="Senha"
           {...register("password", { required: true })}
         />

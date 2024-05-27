@@ -3,6 +3,7 @@
 import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react";
 import ResetPassword from "../ResetPassword";
+import * as ReactHookForm from "react-hook-form";
 
 // Mock da função handleSubmit para evitar erros de submissão real do formulário
 jest.mock("react-hook-form", () => ({
@@ -14,6 +15,10 @@ jest.mock("react-hook-form", () => ({
 }));
 
 describe("ResetPassword Component", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("should render ResetPassword component", () => {
     const { getByText, getByPlaceholderText, getByTestId } = render(
       <ResetPassword />
@@ -30,23 +35,30 @@ describe("ResetPassword Component", () => {
 
   it("should update email input value", () => {
     const { getByPlaceholderText } = render(<ResetPassword />);
-    const emailInput = getByPlaceholderText("Email");
+    const emailInput = getByPlaceholderText("Email") as HTMLInputElement;
     fireEvent.change(emailInput, { target: { value: "test@example.com" } });
     expect(emailInput.value).toBe("test@example.com");
   });
 
   it.skip("should submit the form with email value", async () => {
-    const onSubmitMock = jest.fn(); // Crie um espião para a função onSubmitForm
+    const onSubmitMock = jest.fn();
 
-    const { getByPlaceholderText, getByTestId } = render(
-      <ResetPassword onSubmitForm={onSubmitMock} />
-    );
+    (ReactHookForm.useForm as jest.Mock).mockReturnValue({
+      register: jest.fn(),
+      handleSubmit: (fn: any) => async (e: React.FormEvent) => {
+        e.preventDefault();
+        await fn({ email: "test@example.com" });
+      },
+      formState: { errors: {} },
+    });
 
-    const emailInput = getByPlaceholderText("Email");
-    const form = getByTestId("reset-form"); // Adicione um data-testid ao formulário
+    const { getByPlaceholderText, getByTestId } = render(<ResetPassword />);
+
+    const emailInput = getByPlaceholderText("Email") as HTMLInputElement;
+    const form = getByTestId("reset-form");
 
     fireEvent.change(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.submit(form); // Simule o envio do formulário
+    fireEvent.submit(form);
 
     await waitFor(() => {
       expect(onSubmitMock).toHaveBeenCalledWith({ email: "test@example.com" });

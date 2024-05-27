@@ -6,7 +6,7 @@ import {
   Card,
   Container,
   Divider,
-  Input,
+  InputLabel,
   Row,
   Title,
   UpdateInfo,
@@ -17,9 +17,11 @@ import { InfoManagerGymSchema } from "Utils/Schemas/UserSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { FaEdit } from "react-icons/fa";
+import { AcademiaMock } from "mocks";
 
 const Profile: React.FC = () => {
-  const [isEditing, setIsEditing] = useState(false); // Estado para controlar se está em modo de edição
+  const [isEditing, setIsEditing] = useState(false);
+  const [mockAcademia, setMockAcademia] = useState(AcademiaMock);
 
   const {
     register,
@@ -40,25 +42,25 @@ const Profile: React.FC = () => {
         <h3>Informação administrador</h3>
       </Title>
       <div className="container-fluid">
-        <div className="row">
+        <div className="row row-cols-auto">
           <div className="col-3">
             <Card>
               <UploadImage />
               <Row>
-                <p>Nome</p>
+                <strong>Nome</strong>
                 <p>Bruno Cardoso Feitosa</p>
               </Row>
               <Row>
-                <p>E-mail</p>
+                <strong>E-mail</strong>
                 <p>Brunocarf@gmail.com</p>
               </Row>
               <Divider />
               <Row>
-                <p>Academia</p>
+                <strong>Academia</strong>
                 <p>AgitoFit</p>
               </Row>
               <Row>
-                <p>Código</p>
+                <strong>Código</strong>
                 <p>84852465</p>
               </Row>
             </Card>
@@ -66,145 +68,115 @@ const Profile: React.FC = () => {
           <div className="col-9">
             <Card>
               <Title>
-                <p>Academia</p>
+                <h3>Academia</h3>
                 {!isEditing ? (
-                  <FaEdit onClick={() => setIsEditing(!isEditing)} />
+                  <FaEdit
+                    fill="#ffc60b"
+                    cursor={"pointer"}
+                    fontSize={25}
+                    onClick={() => setIsEditing(!isEditing)}
+                  />
                 ) : (
                   ""
                 )}
               </Title>
-              {/* <UpdateInfo onSubmit={handleSubmit(onSubmitForm)}>
-                <Input
-                  type="text"
-                  value="academy"
-                  placeholder="Nome da academia"
-                  {...register("academy")}
-                  disabled={!isEditing}
-                />
 
-                <Input
-                  type="text"
-                  placeholder="Código da academia"
-                  {...register("code")}
-                  disabled={!isEditing}
-                />
-
-                <Input type="text" placeholder="CEP" {...register("cep")} />
-
-                <Input
-                  type="text"
-                  placeholder="Logradouro (Rua, Avenida, ...)"
-                  {...register("logradouro")}
-                  disabled={!isEditing}
-                />
-
-                <Input
-                  type="text"
-                  placeholder="Número"
-                  {...register("numero")}
-                  disabled={!isEditing}
-                />
-
-                <Input
-                  type="text"
-                  placeholder="Bairro"
-                  {...register("bairro")}
-                  disabled={!isEditing}
-                />
-
-                <Input
-                  type="text"
-                  placeholder="Cidade"
-                  {...register("cidade")}
-                  disabled={!isEditing}
-                />
-
-                <Input
-                  type="text"
-                  placeholder="Estado"
-                  {...register("estado")}
-                  disabled={!isEditing}
-                />
-
-                <Button
-                  type="submit"
-                  onSubmit={handleSubmit(onSubmitForm)}
-                  disabled={!isEditing}
-                  color={theme.color.gray_400}
-                >
-                  Salvar
-                </Button>
-              </UpdateInfo> */}
-              <form className="row g-1">
-                <div className="col-6">
+              <form className="row g-3" onSubmit={handleSubmit(onSubmitForm)}>
+                <div className="col-3">
+                  <InputLabel className="form-label mb-0">
+                    Código da academia
+                  </InputLabel>
                   <input
                     type="text"
-                    placeholder="Nome"
+                    value={mockAcademia.code}
+                    placeholder="Código da academia"
+                    className="form-control"
+                    id="code"
+                    {...register("code")}
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div className="col-5">
+                  <InputLabel className="form-label mb-0">
+                    Nome da academia
+                  </InputLabel>
+                  <input
+                    type="text"
+                    value={mockAcademia.academy}
+                    placeholder="Nome da academia"
                     className="form-control"
                     id="academy"
+                    {...register("academy")}
                   />
                 </div>
-                <div className="col-6">
-                  <input
-                    type="password"
-                    placeholder="password"
-                    className="form-control"
-                    id="inputPassword"
-                  />
-                </div>
-                <div className="col-6">
+                <div className="col-4">
+                  <InputLabel className="form-label mb-0">CEP</InputLabel>
                   <input
                     type="text"
+                    value={mockAcademia.cep}
                     className="form-control"
-                    id="inputRua"
-                    placeholder="Rua"
+                    id="cep"
+                    placeholder="CEP"
+                    {...register("cep")}
                   />
                 </div>
-                <div className="col-6">
+                <div className="col-4">
+                  <InputLabel className="form-label mb-0">
+                    Logradouro
+                  </InputLabel>
                   <input
                     type="text"
+                    value={mockAcademia.logradouro}
                     className="form-control"
-                    id="inputAddress"
-                    placeholder="Endereco"
+                    id="logradouro"
+                    placeholder="Logradouro (Rua, Avenida, ...)"
+                    {...register("logradouro")}
                   />
-                </div>
-                <div className="col-md-6">
-                  <label for="inputCity" className="form-label">
-                    City
-                  </label>
-                  <input type="text" className="form-control" id="inputCity" />
-                </div>
-                <div className="col-md-4">
-                  <label for="inputState" className="form-label">
-                    State
-                  </label>
-                  <select id="inputState" className="form-select">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                  </select>
                 </div>
                 <div className="col-md-2">
-                  <label for="inputZip" className="form-label">
-                    Zip
-                  </label>
-                  <input type="text" className="form-control" id="inputZip" />
+                  <InputLabel className="form-label mb-0">Número</InputLabel>
+                  <input
+                    type="number"
+                    value={mockAcademia.numero}
+                    className="form-control"
+                    id="number"
+                    placeholder="Número"
+                    {...register("numero")}
+                  />
+                </div>
+                <div className="col-md-3">
+                  <InputLabel className="form-label mb-0">Bairro</InputLabel>
+                  <input
+                    type="text"
+                    value={mockAcademia.bairro}
+                    onChange={(e) => {
+                      mockAcademia.bairro = e.target.value;
+                      setMockAcademia({ ...mockAcademia });
+                    }}
+                    className="form-control"
+                    id="bairro"
+                    placeholder="Bairro"
+                  />
+                </div>
+                <div className="col-md-3">
+                  <InputLabel className="form-label mb-0">Cidade</InputLabel>
+                  <input
+                    type="text"
+                    value={mockAcademia.cidade}
+                    className="form-control"
+                    id="city"
+                    placeholder="Cidade"
+                    {...register("cidade")}
+                  />
                 </div>
                 <div className="col-12">
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      id="gridCheck"
-                    />
-                    <label className="form-check-label" for="gridCheck">
-                      Check me out
-                    </label>
-                  </div>
-                </div>
-                <div className="col-12">
-                  <button type="submit" className="btn btn-primary">
-                    Sign in
-                  </button>
+                  <Button
+                    type="submit"
+                    className="w-25 float-end"
+                    disabled={!isEditing}
+                  >
+                    Salvar
+                  </Button>
                 </div>
               </form>
             </Card>

@@ -3,7 +3,7 @@ import Sidebar from "../Sidebar";
 import React from "react";
 
 it("renders Sidebar component", () => {
-  const { getByText } = render(<Sidebar />);
+  const { getByText } = render(<Sidebar menuOpen={true} />);
 
   expect(screen.getByText(/Dashboard/i)).toBeInTheDocument();
   expect(screen.getByText(/Finanças/i)).toBeInTheDocument();
