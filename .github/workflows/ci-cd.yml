@@ -44,32 +44,26 @@ jobs:
       - name: Run tests
         run: npm test
 
-  sonarcloud:
+  codeql:
     runs-on: ubuntu-latest
     needs: test
+    strategy:
+      matrix:
+        language: ["javascript", "typescript"]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
         with:
-          node-version: "16"
+          languages: ${{ matrix.language }}
 
-      - name: Install dependencies
-        run: npm install
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v1
 
-      - name: Run SonarCloud scan
-        env:
-          SONAR_TOKEN: 8957e39657b5dbf3330a7296455e577ec7d67780
-        run: |
-          npm install -g sonarqube-scanner
-          sonar-scanner \
-            -Dsonar.projectKey=GYM-MANAGER \
-            -Dsonar.organization=my-org \
-            -Dsonar.sources=src \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=8957e39657b5dbf3330a7296455e577ec7d67780
+      - name: Analyze
+        uses: github/codeql-action/analyze@v1
 
   deploy:
     runs-on: ubuntu-latest
