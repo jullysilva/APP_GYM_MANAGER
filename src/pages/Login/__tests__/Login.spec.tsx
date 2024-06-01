@@ -3,7 +3,7 @@
 import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react";
 import { useNavigate } from "react-router-dom";
-import { userHook } from "../../../Utils/Context/useAuth";
+import { useAuth } from "../../../Utils/Context/useAuth";
 import Login from "../Login";
 import "@testing-library/jest-dom/extend-expect";
 
@@ -14,7 +14,7 @@ jest.mock("react-router-dom", () => ({
 
 // Mock the userHook
 jest.mock("Utils/Context/useAuth", () => ({
-  userHook: jest.fn(),
+  useAuth: jest.fn(),
 }));
 
 describe("Login Component", () => {
@@ -23,7 +23,7 @@ describe("Login Component", () => {
 
   beforeEach(() => {
     (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
-    (userHook as jest.Mock).mockReturnValue({ setUser: mockSetUser });
+    (useAuth as jest.Mock).mockReturnValue({ setUser: mockSetUser });
   });
 
   it("should render Login component", () => {

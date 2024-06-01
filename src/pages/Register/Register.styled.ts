@@ -1,6 +1,11 @@
 // SignIn.styled.ts
 import styled from "styled-components";
 
+export const Title = styled.h1`
+  font-weight: bold;
+  margin: 0;
+`;
+
 export const Container = styled.div`
   background-color: #f6f5f7;
   display: flex;

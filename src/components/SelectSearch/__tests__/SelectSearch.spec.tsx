@@ -1,5 +1,6 @@
 import * as React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import SelectSearch from "../SelectSearch";
 import { GridValidRowModel } from "@mui/x-data-grid";
 

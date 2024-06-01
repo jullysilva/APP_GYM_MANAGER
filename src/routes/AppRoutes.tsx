@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import {
-  Home,
   Application,
   ResetPassword,
   NotFound,
@@ -11,38 +10,72 @@ import {
   Exercise,
   Dashboard,
   TrainingSheet,
+  Home,
 } from "pages";
 import { UserProvider } from "Utils/Context/useAuth";
-import ProfileTwo from "pages/Profile/ProfileTwo";
 
 const AppRoutes = () => {
   return (
-    <Router>
-      <UserProvider>
+    <UserProvider>
+      <Router>
         <Routes>
           <Route path="/" element={<Application />} />
           <Route path="/resetarsenha" element={<ResetPassword />} />
           <Route path="*" element={<NotFound />} />
-          {/* <PrivateRoute> */}
-          <Route path="/painel" element={<Home />}>
+
+          <Route
+            path="/painel"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          >
             <Route index element={<Dashboard />} />
           </Route>
-          <Route path="/alunos" element={<Home />}>
+          <Route
+            path="/alunos"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          >
             <Route index element={<Member />} />
           </Route>
-          <Route path="/perfil" element={<Home />}>
-            <Route index element={<ProfileTwo />} />
+          <Route
+            path="/perfil"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<Profile />} />
           </Route>
-          <Route path="/exercicio" element={<Home />}>
+          <Route
+            path="/exercicio"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          >
             <Route index element={<Exercise />} />
           </Route>
-          <Route path="/fichadetreino" element={<Home />}>
+          <Route
+            path="/fichadetreino"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          >
             <Route index element={<TrainingSheet />} />
           </Route>
-          {/* </PrivateRoute> */}
         </Routes>
-      </UserProvider>
-    </Router>
+      </Router>
+    </UserProvider>
   );
 };
 

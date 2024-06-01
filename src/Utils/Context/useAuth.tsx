@@ -8,8 +8,9 @@ interface UserProviderProps {
 
 interface UserContextData {
   userData: UserLogin;
-  getUser: ({ email, password }: UserLogin) => void;
+  getUser: () => UserLogin;
   setUser: (userData: UserLogin) => void;
+  logout: () => void;
 }
 
 const UserContext = createContext<UserContextData>({} as UserContextData);
@@ -24,12 +25,18 @@ export function UserProvider({ children }: UserProviderProps) {
   const getUser = () => {
     return userData;
   };
+
+  const logout = () => {
+    setUserData({} as UserLogin);
+  };
+
   return (
     <UserContext.Provider
       value={{
         userData,
         getUser,
         setUser,
+        logout,
       }}
     >
       {children}
@@ -37,9 +44,7 @@ export function UserProvider({ children }: UserProviderProps) {
   );
 }
 
-export function userHook(): UserContextData {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+export function useAuth(): UserContextData {
   const context = useContext(UserContext);
-
   return context;
 }

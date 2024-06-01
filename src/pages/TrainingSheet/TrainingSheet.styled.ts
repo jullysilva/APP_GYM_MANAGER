@@ -55,18 +55,53 @@ export const Button = styled.button`
 `;
 
 export const Card = styled.div`
+  background-size: cover;
   border-radius: 12px;
-  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
-  background-color: #ffffff;
-  color: #252422;
-  margin-bottom: 20px;
   position: relative;
+  width: 300px;
+  height: 200px;
+  background-size: cover;
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+  background-color: black;
+  color: #ffffff;
+  margin-bottom: 20px;
   border: 0 none;
   transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1),
     box-shadow 200ms ease;
+
+  img {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .card-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    text-align: center;
+  }
+
+  &:hover {
+    .card-body {
+      text-shadow: 2px 2px 4px grey;
+    }
+    img {
+      filter: blur(2px);
+    }
+  }
 `;
 
 export const Title = styled.p`
   align-content: center:
   margin-bottom: 0;
+`;
+
+export const IconEdit = styled.span`
+  cursor: pointer;
+  color: green;
+
+  &:hover {
+    color: yellow;
+  }
 `;

@@ -1,15 +1,14 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { userHook } from "Utils/Context/useAuth";
+import { useAuth } from "Utils/Context/useAuth";
 import { UserLogin } from "Utils/Schemas";
 import { useNavigate } from "react-router-dom";
 import { UserLoginSchema } from "Utils/Schemas/UserSchema";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Title } from "./Login.styled";
 
 const Login = () => {
-  const [values, setValues] = useState<UserLogin>({} as UserLogin);
-  const { setUser } = userHook();
+  const { setUser } = useAuth();
   const navigate = useNavigate();
 
   const {
@@ -33,23 +32,31 @@ const Login = () => {
       data-testid="sign-in-container"
     >
       <form className="form" onSubmit={handleSubmit(onSubmitForm)}>
-        <h1>Entrar</h1>
+        <Title>Entrar</Title>
         <input
           type="email"
           className="input"
           placeholder="Email"
           {...register("email", { required: true })}
         />
+        {errors.email && (
+          <span className="text-muted">Email é obrigatório</span>
+        )}
         <input
           type="password"
           className="input"
           placeholder="Senha"
           {...register("password", { required: true })}
         />
+        {errors.password && (
+          <span className="text-muted">Senha é obrigatória</span>
+        )}
         <a className="link" href="/resetarsenha">
           Esqueceu a senha?
         </a>
-        <button type="submit">Acessar</button>
+        <button className="button" type="submit">
+          Acessar
+        </button>
       </form>
     </div>
   );

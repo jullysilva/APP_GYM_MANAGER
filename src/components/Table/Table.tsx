@@ -131,6 +131,7 @@ const Table: React.FC<TableProps> = ({ data, columns }) => {
             <GridActionsCellItem
               icon={<MdSave />}
               label="Save"
+              data-testid="save-icon"
               sx={{
                 color: "#ffc60b",
               }}
@@ -139,6 +140,7 @@ const Table: React.FC<TableProps> = ({ data, columns }) => {
             <GridActionsCellItem
               icon={<MdCancel />}
               label="Cancel"
+              data-testid="cancel-icon"
               className="textPrimary"
               onClick={handleCancelClick(id)}
               color="inherit"
@@ -150,12 +152,14 @@ const Table: React.FC<TableProps> = ({ data, columns }) => {
           <GridActionsCellItem
             icon={<MdEdit />}
             label="Edit"
+            data-testid="edit-icon"
             className="textPrimary"
             onClick={handleEditClick(id)}
             color="inherit"
           />,
           <GridActionsCellItem
             icon={<RiDeleteBin5Line />}
+            data-testid={"delete-icon"}
             label="Delete"
             onClick={handleDeleteClick(id)}
             color="inherit"
@@ -168,6 +172,7 @@ const Table: React.FC<TableProps> = ({ data, columns }) => {
   return (
     <div className="rounded mw-100 bg-white" style={{ height: "400px" }}>
       <DataGrid
+        data-testId="table"
         className="p-3"
         rows={rows}
         columns={column.map((column) => ({

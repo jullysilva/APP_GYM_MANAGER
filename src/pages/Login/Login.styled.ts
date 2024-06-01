@@ -5,7 +5,12 @@ interface ButtonProps {
   color?: string;
 }
 
-const LoginPageContainer = styled.div`
+export const Title = styled.h1`
+  font-weight: bold;
+  margin: 0;
+`;
+
+export const LoginPageContainer = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -15,19 +20,19 @@ const LoginPageContainer = styled.div`
   background-size: cover;
 `;
 
-const LoginForm = styled.form`
+export const LoginForm = styled.form`
   background-color: #fff;
   padding: 20% 15%;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
-const FormTitle = styled.h2`
+export const FormTitle = styled.h2`
   margin-bottom: 20px;
   text-align: center;
 `;
 
-const FormInput = styled.input`
+export const FormInput = styled.input`
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -35,7 +40,7 @@ const FormInput = styled.input`
   border-radius: 4px;
 `;
 
-const FormButton = styled.button<ButtonProps>`
+export const FormButton = styled.button<ButtonProps>`
   width: 100%;
   padding: 10px;
   background-color: ${({ color }) => color || "#666600"};
@@ -50,5 +55,3 @@ const FormButton = styled.button<ButtonProps>`
     color: #fff;
   }
 `;
-
-export { LoginPageContainer, FormTitle, LoginForm, FormInput, FormButton };

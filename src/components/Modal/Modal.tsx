@@ -7,9 +7,17 @@ interface ModalBaseProps {
   isOpen: boolean;
   setOpen: (arg0: boolean) => void;
   children: ReactNode;
+  width?: number;
+  maxHeight?: number;
 }
 
-const ModalBase: React.FC<ModalBaseProps> = ({ isOpen, setOpen, children }) => {
+const ModalBase: React.FC<ModalBaseProps> = ({
+  isOpen,
+  setOpen,
+  children,
+  width,
+  maxHeight,
+}) => {
   const handleClose = () => setOpen(false);
 
   return (
@@ -21,7 +29,9 @@ const ModalBase: React.FC<ModalBaseProps> = ({ isOpen, setOpen, children }) => {
         onClose={handleClose}
         slots={{ backdrop: StyledBackdrop }}
       >
-        <ModalContent>{children}</ModalContent>
+        <ModalContent size={width} height={maxHeight}>
+          {children}
+        </ModalContent>
       </ModalStyled>
     </div>
   );

@@ -1,42 +1,48 @@
 import React from "react";
 import { slide as Menu } from "react-burger-menu";
+import { Link } from "react-router-dom";
 import "./styles.css";
 import { FaSignOutAlt } from "react-icons/fa";
+import { useAuth } from "Utils/Context/useAuth";
 
 interface SidebarProps {
   menuOpen: boolean;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ menuOpen }) => {
+  const { logout } = useAuth();
+
   const handleLogout = () => {
     // Lógica para realizar o logout do sistema
+    logout();
     console.log("Logout realizado com sucesso");
   };
 
   return (
     <>
       <Menu isOpen={menuOpen}>
-        <a id="Dashboard" className="menu-item" href="/painel">
+        <Link id="Dashboard" className="menu-item" to="/painel">
           Dashboard
-        </a>
-        <a id="financas" className="menu-item" href="/financas">
+        </Link>
+        <Link id="financas" className="menu-item" to="/financas">
           Finanças
-        </a>
-        <a id="alunos" className="menu-item" href="/alunos">
+        </Link>
+        <Link id="alunos" className="menu-item" to="/alunos">
           Alunos
-        </a>
-        <a id="treinadores" className="menu-item" href="/treinadores">
-          Treinadores
-        </a>
-        <a id="exercicio" className="menu-item" href="/exercicio">
+        </Link>
+        <Link id="exercicio" className="menu-item" to="/exercicio">
           Exercício
-        </a>
-        <a id="fichadetreino" className="menu-item" href="/fichadetreino">
+        </Link>
+        <Link id="fichadetreino" className="menu-item" to="/fichadetreino">
           Fichas de treino
-        </a>
+        </Link>
         <footer className="bm-menu-footer">
-          <button className="bm-menu-footer-button" onClick={handleLogout}>
-            <FaSignOutAlt className="icon" data-testId="exit" /> Sair
+          <button
+            className="bm-menu-footer-button"
+            data-testid="exit-button"
+            onClick={() => handleLogout()}
+          >
+            <FaSignOutAlt className="icon" /> Sair
           </button>
         </footer>
       </Menu>

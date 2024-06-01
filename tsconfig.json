@@ -34,9 +34,10 @@
       {
         "name": "typescript-plugin-css-modules"
       }
-    ]
+    ],
+    "types": ["@types/jest", "jest"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "__mocks__"],
   "exclude": [
     "node_modules",
     "dist",

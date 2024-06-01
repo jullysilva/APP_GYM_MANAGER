@@ -1,16 +1,32 @@
 import { GridRowsProp } from "@mui/x-data-grid";
-import { ICategory } from "Utils/Interfaces/Interface";
-import { InfoManagerGym } from "Utils/Schemas";
+import {
+  IAdmManager,
+  ICategory,
+  IProfileGym,
+} from "Utils/Interfaces/Interface";
 
-export const AcademiaMock: InfoManagerGym = {
-  academy: "BodyZod",
-  code: 8527419,
-  cep: "12345-678",
+export const AcademiaMock: IProfileGym = {
+  academia: "BodyZod",
+  code: "8527419",
+  cep: "12345678",
   logradouro: "Rua Exemplo",
-  numero: "123",
+  number: 123,
   bairro: "Bairro Exemplo",
   cidade: "Cidade Exemplo",
+  estado: "MG",
+  complemento: "casa",
+  adicional: "",
 };
+
+export const AdmManagerMock: IAdmManager[] = [
+  {
+    id: 1,
+    code: 865421,
+    nome: "Valdecir Germano",
+    email: "valdecirG@gmaiil.com",
+    isAdmin: true,
+  },
+];
 
 export const Category: ICategory[] = [
   { value: "cardio", label: "Cardio" },

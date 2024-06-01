@@ -1,16 +1,15 @@
 import React from "react";
-import "./dashboard.css";
 import { FaPeopleGroup } from "react-icons/fa6";
-import { MainPainel, Wrapper } from "./Dashboard.styled";
+import { Card, MainPainel, Wrapper } from "./Dashboard.styled";
 
 const Dashboard = () => {
   return (
     <Wrapper>
       <MainPainel className="container-fluid p-4">
         <div className="content">
-          <div className="row">
+          <div className="row row-cols-4 g-3">
             <div className="col-lg-3 col-md-6 col-sm-6">
-              <div className="card card-stats">
+              <Card className="card-stats">
                 <div className="card-body">
                   <div className="row">
                     <div className="col-5 col-md-4">
@@ -28,17 +27,10 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-                <div className="card-footer ">
-                  <hr />
-                  <div className="stats">
-                    <i className="fa fa-refresh"></i>
-                    Update Now
-                  </div>
-                </div>
-              </div>
+              </Card>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-6">
-              <div className="card card-stats">
+              <Card className="card card-stats">
                 <div className="card-body ">
                   <div className="row">
                     <div className="col-5 col-md-4">
@@ -54,17 +46,10 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-                <div className="card-footer ">
-                  <hr />
-                  <div className="stats">
-                    <i className="fa fa-calendar-o"></i>
-                    Last day
-                  </div>
-                </div>
-              </div>
+              </Card>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-6">
-              <div className="card card-stats">
+              <Card className="card card-stats">
                 <div className="card-body ">
                   <div className="row">
                     <div className="col-5 col-md-4">
@@ -80,17 +65,10 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-                <div className="card-footer ">
-                  <hr />
-                  <div className="stats">
-                    <i className="fa fa-clock-o"></i>
-                    In the last hour
-                  </div>
-                </div>
-              </div>
+              </Card>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-6">
-              <div className="card card-stats">
+              <Card className="card card-stats">
                 <div className="card-body ">
                   <div className="row">
                     <div className="col-5 col-md-4">
@@ -106,19 +84,12 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-                <div className="card-footer ">
-                  <hr />
-                  <div className="stats">
-                    <i className="fa fa-refresh"></i>
-                    Update now
-                  </div>
-                </div>
-              </div>
+              </Card>
             </div>
           </div>
-          <div className="row">
+          <div className="row my-3">
             <div className="col-md-12">
-              <div className="card ">
+              <Card>
                 <div className="card-header ">
                   <h5 className="card-title">Users Behavior</h5>
                   <p className="card-category">24 Hours performance</p>
@@ -132,12 +103,12 @@ const Dashboard = () => {
                     <i className="fa fa-history"></i> Updated 3 minutes ago
                   </div>
                 </div>
-              </div>
+              </Card>
             </div>
           </div>
-          <div className="row">
+          <div className="row g-3">
             <div className="col-md-4">
-              <div className="card ">
+              <Card>
                 <div className="card-header ">
                   <h5 className="card-title">Email Statistics</h5>
                   <p className="card-category">Last Campaign Performance</p>
@@ -157,10 +128,10 @@ const Dashboard = () => {
                     <i className="fa fa-calendar"></i> Number of emails sent
                   </div>
                 </div>
-              </div>
+              </Card>
             </div>
             <div className="col-md-8">
-              <div className="card card-chart">
+              <Card className="card-chart">
                 <div className="card-header">
                   <h5 className="card-title">NASDAQ: AAPL</h5>
                   <p className="card-category">Line Chart with Points</p>
@@ -178,7 +149,7 @@ const Dashboard = () => {
                     <i className="fa fa-check"></i> Data information certified
                   </div>
                 </div>
-              </div>
+              </Card>
             </div>
           </div>
         </div>

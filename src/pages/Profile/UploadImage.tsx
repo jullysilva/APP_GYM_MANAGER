@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
-import { BoxContainer, Button, CardImage, Image } from "./Profile.styled";
+import { Author, Button, Image } from "./Profile.styled";
 import person from "../../assets/user-profile.svg";
-// import { Button } from '@mui/material';
 
 const UploadImage: React.FC = () => {
   const hiddenFileInput = useRef<HTMLInputElement>(null);
@@ -29,10 +28,8 @@ const UploadImage: React.FC = () => {
   };
 
   return (
-    <div className="author">
-      <div>
-        <Image className="avatar border-gray" src={imageSrc || person} />
-      </div>
+    <Author className="author">
+      <Image className="avatar border-white" src={imageSrc || person} />
       <Button className="outlined" onClick={handleClick}>
         Atualizar
       </Button>
@@ -43,8 +40,9 @@ const UploadImage: React.FC = () => {
         id="profile-picture"
         ref={hiddenFileInput}
         accept="image/*"
+        data-testid="profile-picture"
       />
-    </div>
+    </Author>
   );
 };
 

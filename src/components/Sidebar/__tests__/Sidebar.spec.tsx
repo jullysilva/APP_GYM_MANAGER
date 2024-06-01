@@ -1,14 +1,21 @@
-import { screen, render } from "@testing-library/react";
-import Sidebar from "../Sidebar";
+/* eslint-disable testing-library/prefer-screen-queries */
 import React from "react";
+import { render } from "@testing-library/react";
+import Sidebar from "../Sidebar";
+import { BrowserRouter as Router } from "react-router-dom";
 
-it("renders Sidebar component", () => {
-  const { getByText } = render(<Sidebar menuOpen={true} />);
+describe("Sidebar Component", () => {
+  it("renders sidebar links correctly", () => {
+    const { getByText } = render(
+      <Router>
+        <Sidebar menuOpen={true} />
+      </Router>
+    );
 
-  expect(screen.getByText(/Dashboard/i)).toBeInTheDocument();
-  expect(screen.getByText(/Finanças/i)).toBeInTheDocument();
-  expect(screen.getByText(/Alunos/i)).toBeInTheDocument();
-  expect(screen.getByText(/Treinadores/i)).toBeInTheDocument();
-  expect(screen.getByText(/Exercício/i)).toBeInTheDocument();
-  expect(screen.getByText(/Fichas de treino/i)).toBeInTheDocument();
+    expect(getByText("Dashboard")).toBeInTheDocument();
+    expect(getByText("Finanças")).toBeInTheDocument();
+    expect(getByText("Alunos")).toBeInTheDocument();
+    expect(getByText("Exercício")).toBeInTheDocument();
+    expect(getByText("Fichas de treino")).toBeInTheDocument();
+  });
 });

@@ -2,6 +2,7 @@ import React from "react";
 import { MemberMock } from "mocks";
 import Table from "components/Table/Table";
 import { GridColDef } from "@mui/x-data-grid";
+import { Status } from "./Member.styled";
 
 type Row = (typeof MemberMock)[number];
 
@@ -70,7 +71,7 @@ export const columnsMember: GridColDef<Row>[] = [
         default:
           color = "inherit";
       }
-      return <span style={{ color }}>{params.value}</span>;
+      return <Status color={color}>{params.value}</Status>;
     },
   },
 ];

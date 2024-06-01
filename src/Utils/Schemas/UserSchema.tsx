@@ -39,16 +39,6 @@ export const ExerciseSchema = z.object({
   intervalo: z.coerce.number().gte(15).lte(60).positive(),
 });
 
-export const InfoManagerGymSchema = z.object({
-  academy: z.string().min(1),
-  code: z.number(),
-  cep: z.string().length(8),
-  logradouro: z.string().min(1),
-  numero: z.string().min(1),
-  bairro: z.string().min(1),
-  cidade: z.string().min(1),
-});
-
 export const RegisterTrainningSheetSchema = z.object({
   titulo: z.string().min(1, "O título é obrigatório"),
   categoria: z.string().min(1, "A categoria é obrigatória"),
@@ -56,4 +46,21 @@ export const RegisterTrainningSheetSchema = z.object({
     .array(ExerciseSchema)
     .min(1, "Deve haver pelo menos um exercício"),
   observacao: z.string().optional(),
+});
+
+export const ProfileGymSchema = z.object({
+  academia: z.string().min(1, "O nome da academia é obrigatório"),
+  code: z.string().min(1).optional(),
+  logradouro: z.string().min(1, { message: "A rua é obrigatória" }),
+  number: z.number().optional(),
+  bairro: z.string().min(1, { message: "O bairro é obrigatório" }),
+  cidade: z.string().min(1, { message: "A cidade é obrigatória" }),
+  estado: z.string().min(2, { message: "O estado é obrigatório" }),
+  cep: z
+    .string()
+    .regex(/^\d{5}-\d{3}$/, "CEP inválido")
+    .min(1)
+    .max(9),
+  complemento: z.string().optional(),
+  adicional: z.string().optional(),
 });

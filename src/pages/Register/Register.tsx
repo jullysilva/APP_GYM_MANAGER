@@ -5,6 +5,7 @@ import { UserRegisterSchema } from "Utils/Schemas/UserSchema";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Title } from "./Register.styled";
 
 function Register() {
   const {
@@ -26,7 +27,7 @@ function Register() {
     <>
       <div className="form-container sign-up-container">
         <form className="form" onSubmit={handleSubmit(onSubmitForm)}>
-          <h1>Criar conta</h1>
+          <Title>Criar conta</Title>
           <input
             type="text"
             className="input"
@@ -51,7 +52,9 @@ function Register() {
             placeholder="Repetir senha"
             {...register("repeatPassword", { required: true })}
           />
-          <button type="submit">Registrar-se</button>
+          <button className="button" type="submit">
+            Registrar-se
+          </button>
         </form>
       </div>
       <ToastContainer position="top-right" autoClose={5000} />

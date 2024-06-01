@@ -61,7 +61,7 @@ export const columnsExercise: GridColDef<Row>[] = [
 const Exercise: React.FC = () => {
   return (
     <div className="container-fluid px-5 pt-2">
-      <p className="fs-2 fw-semibold">Treinadores</p>
+      <p className="fs-2 fw-semibold">Exercícios</p>
       <Table data={ExerciseMock} columns={columnsExercise} />
     </div>
   );

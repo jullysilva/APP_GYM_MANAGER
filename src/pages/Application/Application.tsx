@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./styles.css";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import { Text, Title } from "./Application.styled";
 
 const Application = () => {
   const [type, setType] = useState("signIn");
@@ -21,13 +22,13 @@ const Application = () => {
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
-              <h1>Bem-vindo de volta!</h1>
-              <p className="text">
+              <Title>Bem-vindo de volta!</Title>
+              <Text>
                 Para se manter conectado conosco, faça login com suas
                 informações pessoais
-              </p>
+              </Text>
               <button
-                className="ghost"
+                className="ghost button"
                 data-testid="signIn"
                 id="signIn"
                 onClick={() => handleOnClick("signIn")}
@@ -36,12 +37,12 @@ const Application = () => {
               </button>
             </div>
             <div className="overlay-panel overlay-right">
-              <h1>Olá, Gerente!</h1>
-              <p className="text">
+              <Title>Olá, Gerente!</Title>
+              <Text>
                 Insira seus dados pessoais e comece sua jornada conosco
-              </p>
+              </Text>
               <button
-                className="ghost"
+                className="ghost button"
                 data-testid="signUp"
                 id="signUp"
                 onClick={() => handleOnClick("signUp")}

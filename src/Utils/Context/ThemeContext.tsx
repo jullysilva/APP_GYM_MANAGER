@@ -1,5 +1,4 @@
 // ThemeContext.tsx
-
 import { Theme } from "types/Theme";
 import React, { createContext, useContext } from "react";
 
