@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.88f9d09b.css",
+    "main.js": "/static/js/main.b93c00c3.js",
+    "static/media/hikebanner.png": "/static/media/hikebanner.353b0ea54497b21f6d61.png",
+    "static/media/bg-sheet.jpg": "/static/media/bg-sheet.11dc25e784f620603b64.jpg",
+    "static/media/HIKE.png": "/static/media/HIKE.ec34d7de929db86c21b5.png",
+    "static/media/no-data.png": "/static/media/no-data.1c28f77bfa42d118080d.png",
+    "static/media/user-profile.svg": "/static/media/user-profile.b61d5c884574b98ceff39c55fc9455dd.svg",
+    "index.html": "/index.html",
+    "main.88f9d09b.css.map": "/static/css/main.88f9d09b.css.map",
+    "main.b93c00c3.js.map": "/static/js/main.b93c00c3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.88f9d09b.css",
+    "static/js/main.b93c00c3.js"
+  ]
+}
