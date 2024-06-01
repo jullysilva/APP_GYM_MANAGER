@@ -63,9 +63,9 @@ jobs:
 
       - name: Login to Fly.io
         env:
-          FLY_API_TOKEN: fo1_Xq9L4nOZgo0p2cBQ1cNUlCrURkbTDRGpUPPbTulqgZY
+          FLY_API_TOKEN: FlyV1 fm2_lJPECAAAAAAAAqn6xBBuRBaVcinlJqilhW9/XdkuwrVodHRwczovL2FwaS5mbHkuaW8vdjGUAJLOAAMYgB8Lk7lodHRwczovL2FwaS5mbHkuaW8vYWFhL3YxxDwMYZjMwJhoZeiO349Q6mDvzFwh7aLD3JBXnpeIcpMRLRg1X9lEePTF7tqWfZ10hErosZhHpnFQo8LlcLXETncvJ6Bc+txqRpkcXy310sYUccDiMlPzpD64nxxMHIlZTofzr3+fzBbdOFoT/mJRVZOyNzwfZac2qd2n13KTIPy1nNfCwok6gAQb3ZGS1MQgmf2aBpoqJdJWbblwrrWNEbO/W3hS7BQfey8KbzvJxq0=,fm2_lJPETncvJ6Bc+txqRpkcXy310sYUccDiMlPzpD64nxxMHIlZTofzr3+fzBbdOFoT/mJRVZOyNzwfZac2qd2n13KTIPy1nNfCwok6gAQb3ZGS1MQQMcJZeM5bn7Y5ectq5NwfgMO5aHR0cHM6Ly9hcGkuZmx5LmlvL2FhYS92MZYEks5mW4g6zwAAAAEiU6ZYCpHOAALd5QzEEDB6CdviOpNoIhPrU1faDpnEIHAfKMOHwmLE8YoGl41fbIRRRB7BvyGdcofCUM4ngMUs
         run: |
-          flyctl auth token "fo1_Xq9L4nOZgo0p2cBQ1cNUlCrURkbTDRGpUPPbTulqgZY"
+          flyctl auth token FLY_API_TOKEN
           flyctl auth whoami
 
       - name: Build and push Docker image
