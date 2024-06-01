@@ -18,11 +18,7 @@ const TrainingSheet: React.FC = () => {
   const [exercise, setExercise] = useState([]);
   const [sheets, setSheets] = useState<RegisterTrainningSheet[]>([]);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmitForm = (data: any) => {
     const registerData: RegisterTrainningSheet = {

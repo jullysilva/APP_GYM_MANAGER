@@ -26,13 +26,7 @@ const TrainingSheetDetail: React.FC<TrainingSheetDetailProps> = ({
     null
   );
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-    reset,
-  } = useForm({
+  const { register, handleSubmit, setValue, reset } = useForm({
     defaultValues: {
       titulo: sheet?.titulo,
       observacao: sheet?.observacao,

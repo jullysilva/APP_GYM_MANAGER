@@ -4,13 +4,7 @@ import "../Application/styles.css";
 import { FormReset } from "./ResetPassword.styled";
 
 const ResetPassword = () => {
-  const [email, setEmail] = useState("");
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmitForm = async (data: any) => {
     console.log(data);

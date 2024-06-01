@@ -19,12 +19,7 @@ const Profile = () => {
   const [cep, setCep] = useState(AcademiaMock.cep);
   const [open, setOpen] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, setValue } = useForm({
     defaultValues: AcademiaMock,
   });
 

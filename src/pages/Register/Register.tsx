@@ -8,11 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Title } from "./Register.styled";
 
 function Register() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<UserRegister>({
+  const { register, handleSubmit } = useForm<UserRegister>({
     resolver: zodResolver(UserRegisterSchema),
   });
 

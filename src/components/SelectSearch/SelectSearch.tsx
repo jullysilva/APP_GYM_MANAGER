@@ -62,7 +62,7 @@ const StyledTag = styled(Tag)<TagProps>(
 interface SelectSearchProps {
   title: string;
   options: readonly GridValidRowModel[];
-  setData?: ([]) => void;
+  setData?: (arg: any[]) => void;
 }
 
 const SelectSearch: React.FC<SelectSearchProps> = ({

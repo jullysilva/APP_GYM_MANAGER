@@ -22,6 +22,7 @@ const UploadImage: React.FC = () => {
   };
 
   const handleClick = () => {
+    console.log(selectedFile);
     if (hiddenFileInput.current) {
       hiddenFileInput.current.click();
     }
