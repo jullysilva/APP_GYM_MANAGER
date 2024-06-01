@@ -52,19 +52,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Log in to Docker Hub
-        run: echo "Liliu123@" | docker login -u "jullyksilva" --password-stdin
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Install Flyctl
+        run: |
+          curl -L https://fly.io/install.sh | sh
+          export FLYCTL_INSTALL=/home/runner/.fly
+          export PATH=$FLYCTL_INSTALL/bin:$PATH
+
+      - name: Login to Fly.io
+        env:
+          FLY_API_TOKEN: fo1_Xq9L4nOZgo0p2cBQ1cNUlCrURkbTDRGpUPPbTulqgZY
+        run: |
+          flyctl auth token "fo1_Xq9L4nOZgo0p2cBQ1cNUlCrURkbTDRGpUPPbTulqgZY"
+          flyctl auth whoami
 
       - name: Build and push Docker image
         run: |
-          docker build -t jullyksilva/my-app:${{ github.sha }} .
-          docker push jullyksilva/my-app:${{ github.sha }}
+          docker build -t registry.fly.io/your-app-name:${{ github.sha }} .
+          docker push registry.fly.io/your-app-name:${{ github.sha }}
 
-      - name: Deploy to Render
-        env:
-          RENDER_API_KEY: rnd_msx0kvIj85lytp5PxDzd8jU1QyDm
+      - name: Deploy to Fly.io
         run: |
-          curl -X POST "https://api.render.com/deploy/srv-<service-id>" \
-          -H 'Accept: application/json' \
-          -H 'Authorization: Bearer $RENDER_API_KEY' \
-          -d '{"clearCache": false}'
+          flyctl deploy --image registry.fly.io/your-app-name:${{ github.sha }}
