@@ -55,7 +55,7 @@ const TrainingSheet: React.FC = () => {
       </div>
       {sheets.length === 0 ? (
         <div className="card align-items-center p-2">
-          <img className="h-25 w-25" src={NoData} />
+          <img className="h-25 w-25" alt="imagem de pastas" src={NoData} />
           <p className="font-weight-bold h5">Sem fichas cadastradas</p>
         </div>
       ) : (
