@@ -1,0 +1,153 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String          @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  password       String?
+  email          String          
+  status         StatusPayment
+  photo          String?
+  active         Boolean
+  cpf            String 
+  isTrainer      Boolean
+  cref           String?
+  weight         Float?
+  height         Float?
+  phone          String?
+  birth          String?
+  gender         String?
+  refresh_token  String?
+  firstAccess    Boolean
+  healthFileId  String?
+  healthFile     HealthFile?     @relation("UserHealthFile")
+  trainingSheets TrainingSheet[] @relation("UserTrainingSheets")
+  gymId          String?         @db.ObjectId
+  created_at     DateTime?       @default(now())
+  updated_at     DateTime?       @updatedAt
+  
+  @@map("user")
+}
+
+
+model HealthFile {
+  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
+  name_personal_trainer String?
+  lesion                Boolean?
+  diabetes              Boolean?
+  surgery               Boolean?
+  hypertension          Boolean?
+  user                  User?   @relation(fields: [userId], references: [id], name: "UserHealthFile")
+  userId                String   @unique
+  created_at            DateTime? @default(now())
+  updated_at            DateTime? @updatedAt
+
+  @@map("health_file")
+}
+
+
+
+
+model TrainingSheet {
+  id         String       @id @default(auto()) @map("_id") @db.ObjectId
+  title      String
+  activity   ActivityType
+  userId     String?      @db.ObjectId
+  user       User?        @relation(fields: [userId], references: [id], name: "UserTrainingSheets")
+  exerciseIds String[]    @default([])
+  created_at DateTime?    @default(now())
+  updated_at DateTime?    @updatedAt
+
+  @@map("training_sheet")
+}
+
+
+
+model Exercises {
+  id              String                  @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  category        GroupType
+  equipament      String
+  serie           Int
+  num_rep         Int
+  interval        Int
+  created_at      DateTime?               @default(now())
+  updated_at      DateTime?               @updatedAt
+
+  @@map("exercises")
+}
+
+
+model Manager {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  document   String
+  photo      String?
+  phone      String
+  email      String @unique
+  password   String
+  gym        Gym?     @relation("ManagerGym")
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("manager")
+}
+
+model Gym {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  phone      String
+  about      String?
+  code       String
+  zip_code   String
+  number     Int
+  street     String
+  neighborhood String
+  city       String
+  state      String
+  complement String?
+  manager    Manager? @relation(fields: [managerId], references: [id], name: "ManagerGym")
+  managerId  String   @unique @db.ObjectId
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("gym")
+}
+
+enum StatusPayment {
+  PENDENTE
+  ATRASADO
+  PAGO
+}
+
+enum ActivityType {
+  CARDIO
+  GOODSHAPE
+  FEMININO
+  MASCULINO
+  BODYBUILDER
+}
+
+enum GroupType {
+  ABDOMEN
+  QUADRIL
+  ANTEBRACO
+  BICEPS
+  CARDIO
+  DELTOIDE
+  DORSAL
+  GLUTEO
+  ISQUIOTIBIAIS
+  LOMBAR
+  PANTURRILHA
+  PEITORAL
+  QUADRICEPS
+  TRAPEZIO
+  TRICEPS
+}
